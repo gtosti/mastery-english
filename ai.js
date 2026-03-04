@@ -89,7 +89,7 @@ Respond in the same language the student used (if they wrote in Portuguese, resp
                         🔊 Listen
                     </button>
                 </div>
-                <div id="feedback-text-${index}" style="white-space: pre-wrap; line-height: 1.7; font-size: 0.95rem; color: #2d3748;">
+                <div id="feedback-text-${index}" style="white-space: pre-wrap; line-height: 1.7; font-size: 0.95rem; color: #white;">
 ${feedback}
                 </div>
             </div>

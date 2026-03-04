@@ -104,7 +104,6 @@ nav {
     background: rgba(0, 210, 255, 0.04);
     border-bottom: 1px solid var(--glass-border);
     position: relative;
-    overflow: hidden;
 }
 
 .dashboard::before {
