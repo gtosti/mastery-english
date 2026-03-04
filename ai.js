@@ -43,7 +43,7 @@ If the student made errors, base the challenge on the corrected version, not the
 Never use generic challenges like "try to write more" or "add more details."
 Ensure all example sentences are 100% grammatically correct and natural.
 
-Respond in the same language the student used.`;;
+Respond in English.`;;
 
     try {
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
