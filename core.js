@@ -110,6 +110,13 @@ function loadLesson(index) {
     const isCompleted = p.score >= 100;
     const isFading    = p.score > 0 && p.score < 100;
 
+    if (window.innerWidth <= 768) toggleSidebar();
+    if (window.innerWidth <= 768) {
+        const nav = document.querySelector('nav');
+    if (nav.classList.contains('open')) toggleSidebar();
+    }
+
+
     if (typeof activeRecognition !== 'undefined' && activeRecognition) stopRecognition(index);
 
     if (lesson.words) {
@@ -335,3 +342,11 @@ function renderVocabLesson(index, lesson, area, p) {
 }
 
 window.onload = init;
+
+
+function toggleSidebar() {
+    const nav     = document.querySelector('nav');
+    const overlay = document.getElementById('sidebar-overlay');
+    nav.classList.toggle('open');
+    overlay.classList.toggle('open');
+}
