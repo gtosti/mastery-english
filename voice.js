@@ -37,17 +37,22 @@ function startVoiceInput(index) {
 
     recognition.onresult = (event) => {
         let interimTranscript = '';
+        let newFinal = '';
+
         for (let i = event.resultIndex; i < event.results.length; i++) {
             const transcript = event.results[i][0].transcript;
             if (event.results[i].isFinal) {
-                finalTranscript += (finalTranscript ? ' ' : '') + transcript;
+                newFinal += transcript + ' ';
             } else {
                 interimTranscript += transcript;
             }
         }
-        // Mostra texto final + parcial em tempo real
-        textarea.value = finalTranscript + (interimTranscript ? ' ' + interimTranscript : '');
-        // Autosave
+
+        if (newFinal) {
+            finalTranscript += newFinal;
+        }
+
+        textarea.value = (finalTranscript + interimTranscript).trim();
         userProgress[index].freeDraft = textarea.value;
         saveProgress();
     };
