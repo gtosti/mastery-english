@@ -6,7 +6,6 @@ function startVoiceInput(index) {
     const textarea = document.getElementById(`free-prod-${index}`);
     const status   = document.getElementById(`mic-status-${index}`);
 
-    // Verifica suporte
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
         status.innerText = '⚠️ Your browser does not support voice input. Try Chrome or Edge.';
@@ -14,7 +13,6 @@ function startVoiceInput(index) {
         return;
     }
 
-    // Se já está gravando, para
     if (activeRecognition) {
         activeRecognition.stop();
         return;
@@ -22,61 +20,46 @@ function startVoiceInput(index) {
 
     const recognition = new SpeechRecognition();
     recognition.lang = 'en-US';
-    recognition.continuous = true;       // Continua gravando até o usuário parar
-    recognition.interimResults = true;   // Mostra resultado parcial enquanto fala
+    recognition.continuous = false;      // uma frase por vez
+    recognition.interimResults = false;  // só resultado final
 
     activeRecognition = recognition;
 
-    // Estado: gravando
     btn.innerText = '⏹️ Stop';
     btn.style.background = 'var(--secondary)';
     status.innerText = '🎙️ Listening... speak now';
-    status.style.color = 'var(--secondary)';
-
-    let finalTranscript = textarea.value; // Preserva o que já estava escrito
+    status.style.color = 'var(--accent)';
 
     recognition.onresult = (event) => {
-        let interimTranscript = '';
-        let newFinal = '';
-
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            const transcript = event.results[i][0].transcript;
-            if (event.results[i].isFinal) {
-                newFinal += transcript + ' ';
-            } else {
-                interimTranscript += transcript;
-            }
-        }
-
-        if (newFinal) {
-            finalTranscript += newFinal;
-        }
-
-        textarea.value = (finalTranscript + interimTranscript).trim();
+        const transcript = event.results[0][0].transcript;
+        const current = textarea.value.trim();
+        textarea.value = current ? current + ' ' + transcript : transcript;
         userProgress[index].freeDraft = textarea.value;
         saveProgress();
     };
 
+    recognition.onend = () => {
+        // Reinicia automaticamente se o usuário não parou manualmente
+        if (activeRecognition) {
+            recognition.start();
+            status.innerText = '🎙️ Listening... keep speaking or press Stop';
+        } else {
+            stopRecognition(index);
+            status.innerText = '✓ Done! Edit if needed.';
+            status.style.color = 'var(--success)';
+        }
+    };
+
     recognition.onerror = (event) => {
         const messages = {
-            'no-speech':        '🔇 No speech detected. Try again.',
-            'audio-capture':    '🎤 Microphone not found.',
-            'not-allowed':      '🚫 Microphone permission denied. Allow access in your browser settings.',
-            'network':          '🌐 Network error during recognition.'
+            'no-speech':     '🔇 No speech detected. Try again.',
+            'audio-capture': '🎤 Microphone not found.',
+            'not-allowed':   '🚫 Microphone permission denied.',
+            'network':       '🌐 Network error.'
         };
         status.innerText = messages[event.error] || `❌ Error: ${event.error}`;
         status.style.color = 'var(--secondary)';
         stopRecognition(index);
-    };
-
-    recognition.onend = () => {
-        stopRecognition(index);
-        if (textarea.value.trim()) {
-            status.innerText = '✓ Voice input captured. Edit if needed, then check with AI.';
-            status.style.color = 'var(--success)';
-        } else {
-            status.innerText = '';
-        }
     };
 
     recognition.start();
