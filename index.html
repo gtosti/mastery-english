@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastery English: A1, A2, B1 & B2 Comprehensive</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <nav>
+        <div class="dashboard">
+            <h2 style="margin:0; font-size: 1.4rem; letter-spacing: 1px;">Mastery English</h2>
+            <div class="progress-container"><div id="main-progress" class="progress-bar"></div></div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; opacity:0.8">
+                <span>Completed: <b id="perc-complete">0%</b></span>
+                <span>Avg Grade: <b id="avg-grade">0%</b></span>
+            </div>
+            <button class="reset-btn" onclick="resetAll()">Reset Progress</button>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="setFilter('ALL', this)">ALL</button>
+            <button class="filter-btn" onclick="setFilter('A1', this)">A1</button>
+            <button class="filter-btn" onclick="setFilter('A2', this)">A2</button>
+            <button class="filter-btn" onclick="setFilter('B1', this)">B1</button>
+            <button class="filter-btn" onclick="setFilter('B2', this)">B2</button>
+            <button class="filter-btn" onclick="setFilter('VOCAB', this)">VOCAB</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="lessonSearch" placeholder="🔍 Search lesson topic..." onkeyup="filterLessons()">
+        </div>
+
+        <!-- FIX: trocado de <div> para <ul> para semântica correta com <li> dentro -->
+        <ul id="nav-list"></ul>
+    </nav>
+
+    <main>
+        <div id="lesson-area" class="lesson-card">
+            <div style="text-align:center; padding: 40px;">
+                <h1 style="font-size: 3rem;">👋 Welcome!</h1>
+                <p style="font-size: 1.2rem; color: #666;">Acesse um módulo e mantenha suas lições em 100% para vencer a curva do esquecimento.</p>
+                <div style="margin-top: 20px; font-size: 0.9rem; color: var(--accent);">
+                    Dica: Lições em amarelo precisam de revisão!
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        const loaderScript = document.createElement('script');
+        loaderScript.src = 'loader.js?v=' + Date.now();
+        document.head.appendChild(loaderScript);
+    </script>
+
+</body>
+</html>
