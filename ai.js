@@ -20,36 +20,30 @@ async function checkFreeProduction(index) {
     resultBox.innerHTML = '<span style="color:#718096; font-style:italic;">Analyzing your sentences...</span>';
 
     const prompt = `You are an English grammar teacher giving feedback to a student learning English at the ${lesson.module} level.
-
 The lesson topic is: "${lesson.title}"
 Lesson explanation: "${(lesson.explanation || '').replace(/<[^>]*>/g, '')}"
-
-The student wrote these sentences as a free production exercise:
+The student wrote:
 "${userText}"
 
 Give clear, encouraging feedback. For each sentence:
 1. Say if it is correct or has errors
-2. If there are errors, explain WHY it is wrong and show the corrected version
-3. If it is correct, briefly say what the student did well
+2. If there are errors, explain WHY and show the corrected version
+3. If it is correct, briefly highlight what the student did well
 
-Keep the feedback concise, friendly, and pedagogically useful. Focus only on grammar and vocabulary relevant to the lesson topic. Use ✅ for correct sentences and ⚠️ for sentences with errors.
+Then end with a "🚀 Challenge:" section. This is the most important part.
 
-Your primary goal is progressive challenge. Every feedback must end with a "🚀 Challenge:" that is measurably harder than what the student just wrote. Follow this escalation logic strictly:
+Analyze what the student actually wrote — their vocabulary range, sentence complexity, and grammatical structures used — and propose ONE next step that feels like a natural evolution of their writing. The challenge should:
+- Be specific to what they just wrote, not generic
+- Introduce a structure that is slightly beyond their current output (not a giant leap)
+- Give a concrete, incomplete sentence for them to finish, or a sentence to transform
+- Feel like a creative invitation, not a grammar exercise
+- Vary naturally: sometimes it could be about register, sometimes about sentence rhythm, sometimes about a specific grammatical structure — whatever makes most sense given the lesson and what they wrote
 
-LEVEL 1 — Simple sentence written correctly → challenge: add a time clause, reason, or contrast (because, although, when)
-LEVEL 2 — Compound sentence written correctly → challenge: introduce a passive structure, reported speech, or modal verb
-LEVEL 3 — Complex sentence written correctly → challenge: combine two advanced structures in one sentence (e.g. passive + modal, reported speech + conditional)
-LEVEL 4 — Near-perfect output → challenge: rewrite the sentence in a more formal or academic register, or introduce a structure from the next CEFR level
+If the student made errors, base the challenge on the corrected version, not the original attempt.
+Never use generic challenges like "try to write more" or "add more details."
+Ensure all example sentences are 100% grammatically correct and natural.
 
-If the student made errors, correct them first, then set the challenge one step above the corrected version — not above the original attempt.
-
-The challenge must always be:
-- One specific, concrete instruction with an example sentence to complete or transform
-- Actionable: the student must be able to attempt it immediately
-- Never generic ("try to write more!" is not a challenge)
-- When providing example sentences, ensure they are 100% grammatically correct and natural. Never combine two subordinating conjunctions in the same clause.
-
-Respond in the same language the student used (if they wrote in Portuguese, respond in Portuguese; if in English, respond in English).`;
+Respond in the same language the student used.`;;
 
     try {
         const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
