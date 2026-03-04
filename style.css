@@ -640,7 +640,8 @@ code {
 }
 
 @media (max-width: 768px) {
-    .hamburger { display: flex; align-items: center; justify-content: center; }
+    .hamburger { display: flex; align-items: center; justify-content: center; 
+    }
 
     nav {
         position: fixed;
@@ -665,7 +666,7 @@ code {
         max-height: 100vh;
     }
 
-    .lesson-card { padding: 24px 18px; }
+    .lesson-card { padding: 24px 18px; margin-bottom: 24px; }
 
     h1 { font-size: 1.35rem; }
 
