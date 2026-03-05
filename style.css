@@ -560,7 +560,11 @@ code {
 
 .btn-mic  { background: var(--success-bg); color: var(--success); border: 1px solid #bbf7d0; }
 .btn-ai   { background: var(--accent); color: white; border-color: var(--accent); }
-.btn-save { background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border); }
+.btn-save { background: var(--bg-subtle); color: var(--text-muted); border: 1px solid var(--border); 
+.btn-clear { background: transparent; color: var(--text-light); border: 1px solid var(--border); }
+.btn-clear:hover { color: var(--secondary); border-color: var(--secondary); background: #fef2f2; }
+
+}
 
 .btn-mic:hover  { background: #dcfce7; }
 .btn-ai:hover   { background: var(--accent-hover); }

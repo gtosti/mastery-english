@@ -124,6 +124,7 @@ function freeProductionHTML(index, p) {
             <div class="free-production-actions">
                 <button class="btn btn-mic" id="mic-btn-${index}">🎤 Speak</button>
                 <button class="btn btn-ai" id="free-prod-check-${index}">🤖 Check with AI</button>
+                <button class="btn btn-clear" id="free-prod-clear-${index}">✕ Clear</button>
                 <button class="btn btn-save" id="free-prod-save-${index}">💾 Save</button>
                 <span id="free-prod-feedback-${index}" class="free-prod-feedback"></span>
             </div>
@@ -139,6 +140,17 @@ function attachFreeProductionListeners(index) {
         textarea.addEventListener('blur',  () => { textarea.style.borderColor = '#e2e8f0'; });
         textarea.addEventListener('input', () => {
             userProgress[index].freeDraft = textarea.value;
+            saveProgress();
+        });
+    }
+
+    const clearBtn = document.getElementById(`free-prod-clear-${index}`);
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            document.getElementById(`free-prod-${index}`).value = '';
+            document.getElementById(`free-prod-ai-result-${index}`).innerHTML = '';
+            userProgress[index].freeDraft = '';
+            userProgress[index].freeProduction = '';
             saveProgress();
         });
     }
