@@ -30,7 +30,7 @@ Give clear, encouraging feedback. For each sentence:
 2. If there are errors, explain WHY and show the corrected version
 3. If it is correct, briefly highlight what the student did well
 
-Then end with a "🚀 Challenge:" section. This is the most important part.
+Then end with a "Challenge:" section. This is the most important part.
 
 Analyze what the student actually wrote — their vocabulary range, sentence complexity, and grammatical structures used — and propose ONE next step that feels like a natural evolution of their writing. The challenge should:
 - Be specific to what they just wrote, not generic
