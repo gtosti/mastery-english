@@ -7,7 +7,9 @@ const files = [
     'vocab.js',
     'core.js',
     'voice.js',
-    'ai.js'
+    'timer.js',
+    'ai.js',
+
 ];
 
 files.forEach(file => {
