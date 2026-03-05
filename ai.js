@@ -28,7 +28,6 @@ The student wrote:
 Give clear, encouraging feedback. For each sentence:
 1. Say if it is correct or has errors
 2. If there are errors, explain WHY and show the corrected version
-3. If it is correct, briefly highlight what the student did well
 
 Then end with a "Challenge:" section. This is the most important part.
 
@@ -91,6 +90,9 @@ ${feedback}
 
         // [v1.3] Lê o feedback automaticamente
         speak(feedback);
+
+        const hadChallenge = feedback.includes('🚀');
+        registerProduction(hadChallenge);
 
         userProgress[index].freeDraft = userText;
         saveProgress();
