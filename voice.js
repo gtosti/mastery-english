@@ -32,8 +32,9 @@ function startVoiceInput(index) {
 
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
+        const capitalized = transcript.charAt(0).toUpperCase() + transcript.slice(1);
         const current = textarea.value.trim();
-        textarea.value = current ? current + ' ' + transcript : transcript;
+        textarea.value = current ? current + ' ' + capitalized : capitalized;
         userProgress[index].freeDraft = textarea.value;
         saveProgress();
     };

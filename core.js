@@ -27,7 +27,13 @@ function init() {
 
 function speak(text) {
     if (!text) return;
-    window.speechSynthesis.cancel();
+
+    // Se já está falando, cancela
+    if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        return;
+    }
+
     const cleanText = text.replace(/<\/?[^>]+(>|$)/g, "").replace(/___/g, "blank");
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.lang = 'en-US';
