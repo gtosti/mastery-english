@@ -113,7 +113,7 @@ function freeProductionHTML(index, p) {
         <div class="exercise-section free-production-section">
             <h3>✍️ Free Production</h3>
             <p class="free-production-intro">
-                Write or <b>speak</b> 2 original sentences using what you learned.
+                Write or <b>speak</b> 1 original sentence using what you learned.
                 Then click <b>"Check with AI"</b> for personalized feedback.
             </p>
             <textarea id="free-prod-${index}"
