@@ -90,9 +90,13 @@ ${feedback}
 
         // [v1.3] Lê o feedback automaticamente
         speak(feedback);
-
-        const hadChallenge = feedback.includes('🚀');
-        registerProduction(hadChallenge);
+        
+        try {
+            const hadChallenge = feedback.includes('🚀');
+            registerProduction(hadChallenge);
+        } catch(e) {
+            console.warn('Timer not available:', e);
+        }
 
         userProgress[index].freeDraft = userText;
         saveProgress();
