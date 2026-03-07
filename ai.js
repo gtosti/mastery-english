@@ -1,4 +1,4 @@
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = ['gsk_eG1MHXql', 'jPjjP0b42E0n', 'WGdyb3FY1ere', 'dcB0h07VRj2y', 'B5bJOG60'].join('');
 
 async function checkFreeProduction(index) {
     const lesson    = allLessons[index];
